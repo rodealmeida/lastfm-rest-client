@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import au.com.redballoon.config.Property;
 import au.com.redballoon.domain.TopArtistsResponse;
+import au.com.redballoon.domain.TopTracksResponse;
 
 /**
  * Created by rodealmeida on 11/04/2017.
@@ -47,5 +48,16 @@ public class LastFmRestClient implements LastFmClient
                 .queryParam("page", page)
                 .request(MediaType.APPLICATION_JSON)
                 .get(TopArtistsResponse.class);
+    }
+
+    @Override
+    public TopTracksResponse getTopSongByArtist(String artistName, Integer pageSize, Integer page)
+    {
+        return target.queryParam("method", "artist.gettoptracks")
+                .queryParam("artist", artistName)
+                .queryParam("limit", pageSize)
+                .queryParam("page", page)
+                .request(MediaType.APPLICATION_JSON)
+                .get(TopTracksResponse.class);
     }
 }

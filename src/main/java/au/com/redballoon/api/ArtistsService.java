@@ -8,6 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import au.com.redballoon.domain.TopArtistsResponse;
+import au.com.redballoon.domain.TopTracksResponse;
 import au.com.redballoon.service.LastFmClient;
 
 /**
@@ -29,5 +30,14 @@ public class ArtistsService
                                                      @QueryParam("page") Integer page)
     {
         return lastFmRestClient.getArtistsByCountry(country, pageSize, page);
+    }
+
+    @GET
+    @Path("/artists/topSongs")
+    public TopTracksResponse getTopSongByArtist(@QueryParam("name") String artistName,
+                                                @QueryParam("pageSize") Integer pageSize,
+                                                @QueryParam("page") Integer page)
+    {
+        return lastFmRestClient.getTopSongByArtist(artistName, pageSize, page);
     }
 }

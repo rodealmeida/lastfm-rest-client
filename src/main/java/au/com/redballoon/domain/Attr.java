@@ -7,10 +7,12 @@ package au.com.redballoon.domain;
 public class Attr
 {
     private String country;
+    private String artist;
     private String page;
     private String perPage;
     private String totalPages;
     private String total;
+    private String rank;
 
     public String getCountry()
     {
@@ -20,6 +22,16 @@ public class Attr
     public void setCountry(String country)
     {
         this.country = country;
+    }
+
+    public String getArtist()
+    {
+        return artist;
+    }
+
+    public void setArtist(String artist)
+    {
+        this.artist = artist;
     }
 
     public String getPage()
@@ -62,4 +74,13 @@ public class Attr
         this.total = total;
     }
 
+    public String getRank()
+    {
+        return rank;
+    }
+
+    public void setRank(String rank)
+    {
+        this.rank = rank;
+    }
 }
