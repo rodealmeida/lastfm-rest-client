@@ -29,17 +29,19 @@
             });
 
             function handleResult(result) {
-                var topartists = result.topartists || {},
+                var topArtists = result.topartists || {},
                         table = $('#artistsTable');
 
                 table.find('tr').not(':first').remove();
-                $.each(topartists.artist, function (i, data) {
+                $.each(topArtists.artist, function (i, data) {
                     var thumbnailUrl = data.image.filter(function (img) {
                         return img.size === 'small';
                     });
                     table.append(
-                            "<tr><th>" + parseInt(i + 1) + "</th><td><img src=\"" + thumbnailUrl[0]["#text"] + "\" class=\"img-responsive\">" +
-                            data.name + "</td></tr>");
+                            "<tr><th>" + parseInt(i + 1) + "</th><td>" +
+                            "<a href='songs.html?artist=" + data.name + "'>" +
+                            "<img src='" + thumbnailUrl[0]["#text"] + "' class='img-responsive' >" +
+                            data.name + "</a></td></tr>");
                 });
 
                 handlePagination(result);
@@ -85,13 +87,15 @@
     <div class="panel panel-default">
         <div class="panel-body">
 
+            <h1>Top Artists By Country</h1>
+
             <div class="row">
                 <div class="col-md-6">
                     <form class="form-inline">
                         <div class="form-group">
                             <label for="countryName">Country Name</label>
                             <input type="text" class="form-control" id="countryName" placeholder="E.g. Australia">
-                            <input class="btn btn-default" type="button" id="buttonSend" value="Send">
+                            <input class="btn btn-default" type="button" id="buttonSend" value="Show">
                         </div>
                     </form>
                 </div>
@@ -100,7 +104,7 @@
             <br>
 
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="panel panel-default">
                         <table class="table" id="artistsTable">
                             <thead>
@@ -133,6 +137,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <script src="js/bootstrap.min.js"></script>
